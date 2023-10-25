@@ -58,34 +58,51 @@ def main():
     if args.command == 'transcription':
         if args.seq == None:
             exit(parser.parse_args(['transcription','-h']))
-        print("Input",args.seq,"\ntranscription =", dna2rna(seq))
+        print("Input",args.seq,"\nTranscription =", dna2rna(seq))
+        
+    if args.command == 'transcription':
+        if args.revcomp == None:
+            exit(parser.parse_args(['transcription', '-h']))
+        print("Input",args.revcomp, "\nTranscription= ",dna2rna(reverseComplementSeq(seq)))
 
     if args.command == 'translation':
         if args.seq == None:
             exit(parser.parse_args(['translation','-h']))
-        print("Input",args.seq,"\ntranslation =", dna2protein(seq))  
+        print("Input",args.seq,"\nTranslation =", dna2protein(seq))  
+
+    if args.command == 'translation':
+        if args.revcomp == None:
+            exit(parser.parse_args(['translation', '-h']))
+        print("Input",args.revcomp, "\nTranslation= ",dna2protein(reverseComplementSeq(seq)))
 
     if args.command == 'countBases':
         if args.seq == None:
             exit(parser.parse_args(['countBases','-h']))
         print("Input",args.seq,"\ncountBases =", countBasesDict(seq))
-    
-    
+#
+    if args.command == 'enzTargetsScan':
+        if args.seq == None:
+            exit(parser.parse_args(['enzTargetsScan','-h']))   
+        print("Input",args.seq,"\nEcoRI sites = ", enzTargetsScan(seq,'EcoRI'))
+        
+    if args.command == 'enzTargetsScan':
+        if args.revcomp == None:
+            exit(parser.parse_args(['enzTargetsScan', '-h']))
+        print("Input",args.revcomp, "\nEcoRI sites= ",enzTargetsScan(reverseComplementSeq(seq),'EcoRI'))
 
 
-
-
-    # seq = 'ATGGGccGTAGAATTCTTGCaaGCCCGT'
-    # seq = seq.upper()
-    # print("Transcription: ", dna2rna(seq))
-    # print("Transcription-revcomp: ", dna2rna(reverseComplementSeq(seq)))
-    # print("Translation: ", dna2protein(seq))
-    # print("Translation-revcomp: ", dna2protein(reverseComplementSeq(seq)))
-    # print("GC Content:", gcContent(seq))
-    # print("Count Bases: ", countBasesDict(seq))
-    # print("Count Bases-revcomp: ", countBasesDict(reverseComplementSeq(seq)))
-    # print("Search EcoRI: ", enzTargetsScan(seq, 'EcoRI'))
-    # print("Search EcoRI-revcomp: ", enzTargetsScan(reverseComplementSeq(seq), 'EcoRI'))
+def main2():
+    seq = 'ATGGGccGTAGAATTCTTGCaaGCCCGT'
+    seq = seq.upper()
+    print("Transcription: ", dna2rna(seq))
+    print("Transcription-revcomp: ", dna2rna(reverseComplementSeq(seq)))
+    print("Translation: ", dna2protein(seq))
+    print("Translation-revcomp: ", dna2protein(reverseComplementSeq(seq)))
+    print("GC Content:", gcContent(seq))
+    print("Count Bases: ", countBasesDict(seq))
+    print("Count Bases-revcomp: ", countBasesDict(reverseComplementSeq(seq)))
+    print("Search EcoRI: ", enzTargetsScan(seq, 'EcoRI'))
+    print("Search EcoRI-revcomp: ", enzTargetsScan(reverseComplementSeq(seq), 'EcoRI'))
 
 if __name__ == "__main__":
     main()
