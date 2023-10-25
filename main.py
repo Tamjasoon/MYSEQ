@@ -34,10 +34,6 @@ def argparserLocal():
     enz_command.add_argument("-r","--revcomp",type=str,default=None,help="Convert DNA to reverse-complementary")
 
     return parser
-# def test(): 
-#     parser = argparserLocal()
-#     args = parser.parse_args(["transcription","-s","ATGGGccGTAGAATTCTTGCaaGCCCGT"])
-#     print("Input",args.seq,"\ntranscription = ", dna2rna(args.seq))
 
 def main():
     parser = argparserLocal()
@@ -106,4 +102,3 @@ def main2():
 
 if __name__ == "__main__":
     main()
-    #test()
